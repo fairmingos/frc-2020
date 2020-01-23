@@ -10,4 +10,13 @@ package frc.robot
  * It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-class Constants
+
+object Constants {
+    // Motor PWM Ports
+    val LEFT_MOTOR_1 = 0
+    val RIGHT_MOTOR_1 = 1
+
+    // Joystick Order Number
+    val JOYSTICK_1 = 0
+    // Joystick Button Numbers
+}

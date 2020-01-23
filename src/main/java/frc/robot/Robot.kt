@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler
 // Basically ignore this class. 100% boilerplate. Thanks, Java.
 
 object Robot : TimedRobot() {
-    private var autonomousCommand: Command? = null;
-    private lateinit var robotContainer: RobotContainer;
+    private var autonomousCommand: Command? = null
+    private lateinit var robotContainer: RobotContainer
 
     /**
      * This method is responsible for instantiating the RobotContainer
      */
     override fun robotInit() {
-        robotContainer = RobotContainer()
+        robotContainer = RobotContainer
     }
 
     /**
@@ -29,7 +29,7 @@ object Robot : TimedRobot() {
      * This autonomous runs the autonomous command selected by your [RobotContainer] class.
      */
     override fun autonomousInit() {
-        autonomousCommand = robotContainer.autonomousCommand;
+        autonomousCommand = robotContainer.autonomousCommand
         // schedule the autonomous command (example)
         if (autonomousCommand != null) {
             autonomousCommand!!.schedule()
