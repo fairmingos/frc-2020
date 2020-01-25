@@ -43,7 +43,7 @@ def includeDesktopSupport = false
 
 
 test {
-    useJUnitPlatform()
+    // useJUnitPlatform()
 }
         
 dependencies {
@@ -60,6 +60,10 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5Version"
     testImplementation "org.junit.jupiter:junit-jupiter-params:$junit5Version"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5Version"
+
+    // Mockito
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testCompile "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 
     // Enable simulation gui support. Must check the box in vscode to enable support
     // upon debugging
