@@ -2,7 +2,7 @@ package frc.robot.subsystems
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import frc.robot.subsystems.DriveSubsystem
-import org.junit.jupiter.api.Test
+import org.junit.Test
 import org.mockito.Mockito.*
 
 class DriveSubsystemSpec {
