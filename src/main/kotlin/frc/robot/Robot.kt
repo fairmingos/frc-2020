@@ -15,7 +15,7 @@ object Robot : TimedRobot() {
      * This method is responsible for instantiating the RobotContainer
      */
     override fun robotInit() {
-        robotContainer = RobotContainer
+        robotContainer = RobotContainer()
     }
 
     /**

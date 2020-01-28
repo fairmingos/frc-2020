@@ -14,7 +14,9 @@ import frc.robot.subsystems.DriveSubsystem
  * This class is responsible for defining subsystems, commands, and button bindings for commands
  */
 
-object RobotContainer {
+// RobotContainer must be a class for unit testing
+
+class RobotContainer {
     val autonomousCommand: Command? = null
     val joystick = Joystick(Constants.JOYSTICK_1)
 
