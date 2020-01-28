@@ -32,7 +32,7 @@ object RobotContainer {
 
     /** Commands **/
     // default commands on teleop
-    private val driveCommand = DriveCommand(driveSubsystem)
+    private val driveCommand = DriveCommand(driveSubsystem, joystick)
 
     init {
       driveSubsystem.defaultCommand = driveCommand

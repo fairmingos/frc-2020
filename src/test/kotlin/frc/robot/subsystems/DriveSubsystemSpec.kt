@@ -1,21 +1,18 @@
 package frc.robot.subsystems
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
-import frc.robot.subsystems.DriveSubsystem
-import org.junit.jupiter.api.Test
+import org.junit.Test
 import org.mockito.Mockito.*
 
 class DriveSubsystemSpec {
     @Test
-    fun testProcessJoystickInputFwdChangeSign(){
-        val drive: DifferentialDrive = mock(DifferentialDrive::class.java)
+    fun testArcadeDrive(){
+        // arrange
+        val mockDrive: DifferentialDrive = mock(DifferentialDrive::class.java)
+        val driveSubsystem = DriveSubsystem(mockDrive)
 
-        val driveSubsystem = DriveSubsystem(drive)
+        driveSubsystem.arcadeDrive(0.5, 0.5)
 
-        val input = Pair<Double, Double>(1.0, 0.0)
-
-        val (fwd, rot) = driveSubsystem.processJoystickInput(input)
-
-        assert(fwd < 0)
+        verify(mockDrive).arcadeDrive(0.5, 0.5)
     }
 }
