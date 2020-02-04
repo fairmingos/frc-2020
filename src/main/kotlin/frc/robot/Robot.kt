@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler
 
 // Basically ignore this class. 100% boilerplate. Thanks, Java.
 
-object Robot : TimedRobot() {
+class Robot : TimedRobot() {
     private var autonomousCommand: Command? = null
     private lateinit var robotContainer: RobotContainer
 

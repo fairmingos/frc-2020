@@ -10,9 +10,9 @@ class DriveSubsystemSpec {
         // arrange
         val mockDrive: DifferentialDrive = mock(DifferentialDrive::class.java)
         val driveSubsystem = DriveSubsystem(mockDrive)
-
+        // act
         driveSubsystem.arcadeDrive(0.5, 0.5)
-
+        // assert
         verify(mockDrive).arcadeDrive(0.5, 0.5)
     }
 }
