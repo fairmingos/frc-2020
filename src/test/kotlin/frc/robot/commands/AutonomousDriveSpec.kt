@@ -28,8 +28,9 @@ class AutonomousDriveSpec {
         // arrange
         `when`(mockTimer.get()).thenReturn(0.0)
         // act
-        commandScheduler.schedule(autonomousDriveCommand)
-        commandScheduler.run()
+//        commandScheduler.schedule(autonomousDriveCommand)
+//        commandScheduler.run()
+        autonomousDriveCommand.execute()
         // assert
         verify(mockDriveSubsystem).arcadeDrive(anyDouble(), anyDouble())
     }
