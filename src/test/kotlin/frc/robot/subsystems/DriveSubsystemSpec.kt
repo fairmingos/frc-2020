@@ -6,7 +6,7 @@ import org.mockito.Mockito.*
 
 class DriveSubsystemSpec {
     @Test
-    fun testArcadeDrive(){
+    fun testArcadeDrive (){
         // arrange
         val mockDrive: DifferentialDrive = mock(DifferentialDrive::class.java)
         val driveSubsystem = DriveSubsystem(mockDrive)

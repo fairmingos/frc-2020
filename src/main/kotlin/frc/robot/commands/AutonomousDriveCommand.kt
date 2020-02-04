@@ -1,9 +1,13 @@
 package frc.robot.commands
 
+import edu.wpi.first.wpilibj.Timer
 import edu.wpi.first.wpilibj2.command.CommandBase
 import frc.robot.subsystems.DriveSubsystem
 
-class AutonomousDriveCommand(private val driveSubsystem: DriveSubsystem) : CommandBase() {
+class AutonomousDriveCommand(
+    private val driveSubsystem: DriveSubsystem,
+    private val mockTimer: Timer
+) : CommandBase() {
     /**
      * The initial subroutine of a command.  Called once when the command is initially scheduled.
      */
@@ -13,7 +17,9 @@ class AutonomousDriveCommand(private val driveSubsystem: DriveSubsystem) : Comma
      * The main body of a command.  Called repeatedly while the command is scheduled.
      * (That is, it is called repeatedly until [.isFinished]) returns true.)
      */
-    override fun execute() {}
+    override fun execute() {
+        driveSubsystem.arcadeDrive(0.1, 0.1)
+    }
 
     /**
      *

@@ -14,7 +14,7 @@ class DriveCommandSpec {
     private lateinit var driveCommand: DriveCommand
 
     @Before
-    fun beforeAll(){
+    fun setup (){
         mockJoystick = mock(Joystick::class.java)
         mockDifferentialDrive = mock(DifferentialDrive::class.java)
         mockDriveSubsystem = DriveSubsystem(mockDifferentialDrive)
