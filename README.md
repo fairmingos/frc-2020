@@ -3,4 +3,4 @@
 
 This year's code feature's a test-driven Kotlin development structure, using Intellij IDEA. We're also making use of the new refactored Command Based Robot framework for the 2020 season.
 
-[frc-2020 Project](https://github.com/fairmingos/projects/1)
+[frc-2020 Project](https://github.com/users/fairmingos/projects/1)
