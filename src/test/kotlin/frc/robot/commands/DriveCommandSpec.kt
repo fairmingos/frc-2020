@@ -1,22 +1,21 @@
 package frc.robot.commands
 
 import com.nhaarman.mockitokotlin2.*
-import edu.wpi.first.wpilibj.Joystick
-import edu.wpi.first.wpilibj.drive.DifferentialDrive
+import frc.robot.OI
 import frc.robot.subsystems.DriveSubsystem
 import org.junit.*
 import org.mockito.Mockito.`when`
 
 class DriveCommandSpec {
-    private lateinit var mockJoystick: Joystick
+    private lateinit var mockOI: OI
     private lateinit var mockDriveSubsystem: DriveSubsystem
     private lateinit var driveCommand: DriveCommand
 
     @Before
     fun setup () {
-        mockJoystick = mock()
+        mockOI = mock()
         mockDriveSubsystem = mock()
-        driveCommand = DriveCommand(mockDriveSubsystem, mockJoystick)
+        driveCommand = DriveCommand(mockDriveSubsystem, mockOI)
     }
     @Test
     fun processJoystickInputChangesSignOfY () {
@@ -40,8 +39,9 @@ class DriveCommandSpec {
         // Arrange
         val mockJoystickY = 0.5
         val mockJoystickX = 0.05
-        `when`(mockJoystick.getY()).thenReturn(mockJoystickY)
-        `when`(mockJoystick.getX()).thenReturn(mockJoystickX)
+        `when`(mockOI.getFwd()).thenReturn(mockJoystickY)
+//        doReturn(mockJoystickY).`when`(mockJoystick).getX()
+        `when`(mockOI.getRot()).thenReturn(mockJoystickX)
         val (expectedFwd, expectedRot) = driveCommand.processJoystickInput(
             mockJoystickY, mockJoystickX
         )

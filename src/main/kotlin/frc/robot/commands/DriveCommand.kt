@@ -1,13 +1,12 @@
 package frc.robot.commands
 
-import edu.wpi.first.wpilibj.Joystick
 import edu.wpi.first.wpilibj2.command.CommandBase
-import frc.robot.RobotContainer
+import frc.robot.OI
 import frc.robot.subsystems.DriveSubsystem
 
 class DriveCommand(
         private val driveSubsystem: DriveSubsystem,
-        private val joystick: Joystick
+        private val oi: OI
 ) : CommandBase() {
     val fwdLimit: Double = 0.8
     val rotLimit: Double = 0.8
@@ -22,8 +21,9 @@ class DriveCommand(
     override fun initialize() {}
 
     override fun execute() {
-        val fwd = joystick.y
-        val rot = joystick.x
+        val (fwd, rot) = processJoystickInput(
+            oi.getFwd(), oi.getRot()
+        )
 
         driveSubsystem.arcadeDrive(fwd, rot)
     }
