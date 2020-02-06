@@ -6,8 +6,18 @@ import frc.robot.subsystems.DriveSubsystem
 
 class AutonomousDriveCommand(
     private val driveSubsystem: DriveSubsystem,
-    private val mockTimer: Timer
+    private val timer: Timer
 ) : CommandBase() {
+    private val duration: Double = 15.0
+    private val power: Double = 0.8
+
+    fun getDuration (): Double {
+        return duration
+    }
+    fun getPower (): Double {
+        return power
+    }
+
     /**
      * The initial subroutine of a command.  Called once when the command is initially scheduled.
      */
@@ -18,7 +28,9 @@ class AutonomousDriveCommand(
      * (That is, it is called repeatedly until [.isFinished]) returns true.)
      */
     override fun execute() {
-        driveSubsystem.arcadeDrive(0.1, 0.1)
+        if (timer.get() < duration) {
+            driveSubsystem.arcadeDrive(power, 0.0)
+        }
     }
 
     /**

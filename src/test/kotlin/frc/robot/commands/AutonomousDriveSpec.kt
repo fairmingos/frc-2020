@@ -1,7 +1,6 @@
 package frc.robot.commands
 
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.*
 import org.mockito.Mockito.`when`
 import edu.wpi.first.wpilibj.Timer
 import edu.wpi.first.wpilibj2.command.CommandScheduler
@@ -33,5 +32,23 @@ class AutonomousDriveSpec {
         autonomousDriveCommand.execute()
         // assert
         verify(mockDriveSubsystem).arcadeDrive(anyDouble(), anyDouble())
+    }
+    @Test
+    fun doesNotDriveWhenTimerIsMoreThanDuration () {
+        // arrange
+        `when`(mockTimer.get()).thenReturn(autonomousDriveCommand.getDuration())
+        // act
+        autonomousDriveCommand.execute()
+        // assert
+        verify(mockDriveSubsystem, never()).arcadeDrive(anyDouble(), anyDouble())
+    }
+    @Test
+    fun callsArcadeDriveWithExpectedArguments () {
+        // arrange
+        `when`(mockTimer.get()).thenReturn(0.0)
+        // act
+        autonomousDriveCommand.execute()
+        // assert
+        verify(mockDriveSubsystem).arcadeDrive(autonomousDriveCommand.getPower(), 0.0)
     }
 }
