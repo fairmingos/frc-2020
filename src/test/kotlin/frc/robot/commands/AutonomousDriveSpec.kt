@@ -34,7 +34,7 @@ class AutonomousDriveSpec {
         verify(mockDriveSubsystem).arcadeDrive(anyDouble(), anyDouble())
     }
     @Test
-    fun doesNotDriveWhenTimerIsMoreThanDuration () {
+    fun doesNotDriveWhenTimerIsNotLessThanDuration () {
         // arrange
         `when`(mockTimer.get()).thenReturn(autonomousDriveCommand.getDuration())
         // act

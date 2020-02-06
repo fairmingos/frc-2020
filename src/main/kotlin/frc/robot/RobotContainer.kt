@@ -18,7 +18,8 @@ import frc.robot.subsystems.DriveSubsystem
 
 class RobotContainer {
     val autonomousCommand: Command? = null
-    val joystick = Joystick(Constants.JOYSTICK_1)
+    private val joystick = Joystick(Constants.JOYSTICK_1)
+    private val oi = OI(joystick)
 
     /** Motors **/
     private val leftMotor0: SpeedController = Spark(Constants.LEFT_MOTOR_1)
@@ -34,7 +35,7 @@ class RobotContainer {
 
     /** Commands **/
     // default commands on teleop
-    private val driveCommand = DriveCommand(driveSubsystem, joystick)
+    private val driveCommand = DriveCommand(driveSubsystem, oi)
 
     init {
       driveSubsystem.defaultCommand = driveCommand
