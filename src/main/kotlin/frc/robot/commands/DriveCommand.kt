@@ -21,9 +21,7 @@ class DriveCommand(
     override fun initialize() {}
 
     override fun execute() {
-        val (fwd, rot) = processJoystickInput(
-            oi.getFwd(), oi.getRot()
-        )
+        val (fwd, rot) = processJoystickInput(oi.getFwd(), oi.getRot())
 
         driveSubsystem.arcadeDrive(fwd, rot)
     }
