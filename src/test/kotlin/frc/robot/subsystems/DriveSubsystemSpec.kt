@@ -7,12 +7,12 @@ import org.mockito.Mockito.*
 class DriveSubsystemSpec {
     @Test
     fun testArcadeDrive (){
-        // arrange
+        // Arrange
         val mockDrive: DifferentialDrive = mock(DifferentialDrive::class.java)
         val driveSubsystem = DriveSubsystem(mockDrive)
-        // act
+        // Act
         driveSubsystem.arcadeDrive(0.5, 0.5)
-        // assert
+        // Assert
         verify(mockDrive).arcadeDrive(0.5, 0.5)
     }
 }

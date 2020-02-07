@@ -26,29 +26,29 @@ class AutonomousDriveSpec {
     }
     @Test
     fun drivesWhenTimerIsLessThanDuration () {
-        // arrange
+        // Arrange
         `when`(mockTimer.get()).thenReturn(0.0)
-        // act
+        // Act
         autonomousDriveCommand.execute()
-        // assert
+        // Assert
         verify(mockDriveSubsystem).arcadeDrive(anyDouble(), anyDouble())
     }
     @Test
     fun doesNotDriveWhenTimerIsNotLessThanDuration () {
-        // arrange
+        // Arrange
         `when`(mockTimer.get()).thenReturn(autonomousDriveCommand.getDuration())
-        // act
+        // Act
         autonomousDriveCommand.execute()
-        // assert
+        // Assert
         verify(mockDriveSubsystem, never()).arcadeDrive(anyDouble(), anyDouble())
     }
     @Test
     fun callsArcadeDriveWithExpectedArguments () {
-        // arrange
+        // Arrange
         `when`(mockTimer.get()).thenReturn(0.0)
-        // act
+        // Act
         autonomousDriveCommand.execute()
-        // assert
+        // Assert
         verify(mockDriveSubsystem).arcadeDrive(autonomousDriveCommand.getPower(), 0.0)
     }
 }

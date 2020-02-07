@@ -40,7 +40,6 @@ class DriveCommandSpec {
         val mockJoystickY = 0.5
         val mockJoystickX = 0.05
         `when`(mockOI.getFwd()).thenReturn(mockJoystickY)
-//        doReturn(mockJoystickY).`when`(mockJoystick).getX()
         `when`(mockOI.getRot()).thenReturn(mockJoystickX)
         val (expectedFwd, expectedRot) = driveCommand.processJoystickInput(
             mockJoystickY, mockJoystickX
