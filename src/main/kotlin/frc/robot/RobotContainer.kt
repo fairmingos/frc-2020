@@ -3,7 +3,6 @@ package frc.robot
 
 import edu.wpi.first.wpilibj.*
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
-import edu.wpi.first.wpilibj2.command.Command
 import frc.robot.commands.AutonomousDriveCommand
 import frc.robot.commands.DriveCommand
 import frc.robot.subsystems.DriveSubsystem
@@ -15,6 +14,7 @@ import frc.robot.subsystems.DriveSubsystem
 // RobotContainer must be a class for unit testing
 
 class RobotContainer {
+
     private val joystick = Joystick(Constants.JOYSTICK_1)
     private val oi = OI(joystick)
 
@@ -30,15 +30,9 @@ class RobotContainer {
     /** Subsystems **/
     private val driveSubsystem = DriveSubsystem(drive)
 
-    /** Commands **/
-    // default autonomous command
-    val autonomousCommand: Command? = AutonomousDriveCommand(driveSubsystem, Timer())
-    // default drive subsystem command
-    private val driveCommand = DriveCommand(driveSubsystem, oi)
-
-    init {
-      driveSubsystem.defaultCommand = driveCommand
-    }
-    /** Joystick Buttons **/
+    /** Autonomous Command **/
+    val autonomousCommand = AutonomousDriveCommand(driveSubsystem, Timer())
+    /** Teleop Commands **/
+    val driveCommand = DriveCommand(driveSubsystem, oi)
 
 }
