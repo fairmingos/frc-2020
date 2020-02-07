@@ -8,8 +8,8 @@ class AutonomousDriveCommand(
     private val driveSubsystem: DriveSubsystem,
     private val timer: Timer
 ) : CommandBase() {
-    private val duration: Double = 15.0
-    private val power: Double = 0.8
+    private val duration: Double = 2.0
+    private val power: Double = 0.5
 
     fun getDuration (): Double {
         return duration
