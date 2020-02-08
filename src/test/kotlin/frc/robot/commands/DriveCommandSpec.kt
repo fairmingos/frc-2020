@@ -16,6 +16,7 @@ class DriveCommandSpec {
         mockOI = mock()
         mockDriveSubsystem = mock()
         driveCommand = DriveCommand(mockDriveSubsystem, mockOI)
+        `when`(mockOI.getSlider()).thenReturn(1.0)
     }
     @Test
     fun processJoystickInputChangesSignOfY () {
@@ -48,5 +49,33 @@ class DriveCommandSpec {
         driveCommand.execute()
         // Assert
         verify(mockDriveSubsystem).arcadeDrive(expectedFwd, expectedRot)
+    }
+    @Test
+    fun isReversedWhenSliderIsBack () {
+        // Arrange
+        `when`(mockOI.getSlider()).thenReturn(-1.0)
+        // Act
+        val reversed = driveCommand.isReversed()
+        // Assert
+        assert(reversed)
+    }
+    @Test
+    fun isNotReversedWhenSliderIsForward () {
+        // Arrange
+        `when`(mockOI.getSlider()).thenReturn(1.0)
+        // Act
+        val reversed = driveCommand.isReversed()
+        // Assert
+        assert(!reversed)
+    }
+    @Test
+    fun processInputReversesFwdWithSlider () {
+        // Arrange
+        val (fwd) = driveCommand.processJoystickInput(1.0, 0.0)
+        driveCommand.reversed = true
+        // Act
+        val (revFwd) = driveCommand.processJoystickInput(1.0, 0.0)
+        // Assert
+        assert(fwd == -revFwd)
     }
 }
