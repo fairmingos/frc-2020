@@ -16,7 +16,6 @@ class DriveCommandSpec {
         mockOI = mock()
         mockDriveSubsystem = mock()
         driveCommand = DriveCommand(mockDriveSubsystem, mockOI)
-        `when`(mockOI.getSlider()).thenReturn(1.0)
     }
     @Test
     fun processJoystickInputChangesSignOfY () {
@@ -38,13 +37,11 @@ class DriveCommandSpec {
     @Test
     fun callsArcadeDriveWithExpectedArguments () {
         // Arrange
-        val mockJoystickY = 0.5
-        val mockJoystickX = 0.05
-        `when`(mockOI.getFwd()).thenReturn(mockJoystickY)
-        `when`(mockOI.getRot()).thenReturn(mockJoystickX)
+        `when`(mockOI.getFwd()).thenReturn(0.5)
+        `when`(mockOI.getRot()).thenReturn(0.05)
+        `when`(mockOI.getSlider()).thenReturn(1.0)
         val (expectedFwd, expectedRot) = driveCommand.processJoystickInput(
-            mockJoystickY, mockJoystickX
-        )
+                0.5, 0.05)
         // Act
         driveCommand.execute()
         // Assert
