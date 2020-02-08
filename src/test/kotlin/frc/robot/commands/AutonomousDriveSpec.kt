@@ -23,22 +23,22 @@ class AutonomousDriveSpec {
         autonomousDriveCommand = AutonomousDriveCommand(mockDriveSubsystem, mockTimer)
     }
     @Test
-    fun drivesWhenTimerIsLessThanDuration () {
+    fun isNotFinishedWhenTimerIsLessThanDuration () {
         // Arrange
         `when`(mockTimer.get()).thenReturn(0.0)
         // Act
-        autonomousDriveCommand.execute()
+        val finished = autonomousDriveCommand.isFinished
         // Assert
-        verify(mockDriveSubsystem).arcadeDrive(anyDouble(), anyDouble())
+        assert(!finished)
     }
     @Test
-    fun doesNotDriveWhenTimerIsNotLessThanDuration () {
+    fun isFinishedWhenTimerIsMoreThanDuration () {
         // Arrange
         `when`(mockTimer.get()).thenReturn(autonomousDriveCommand.getDuration())
         // Act
-        autonomousDriveCommand.execute()
+        val finished = autonomousDriveCommand.isFinished
         // Assert
-        verify(mockDriveSubsystem, never()).arcadeDrive(anyDouble(), anyDouble())
+        assert(finished)
     }
     @Test
     fun callsArcadeDriveWithExpectedArguments () {
@@ -48,5 +48,23 @@ class AutonomousDriveSpec {
         autonomousDriveCommand.execute()
         // Assert
         verify(mockDriveSubsystem).arcadeDrive(autonomousDriveCommand.getPower(), 0.0)
+    }
+    @Test
+    fun startsTimerOnInitialize () {
+        // Arrange
+        /* mockTimer is initialized in @Before */
+        // Act
+        autonomousDriveCommand.initialize()
+        // Assert
+        verify(mockTimer).start()
+    }
+    @Test
+    fun stopsArcadeDriveOnEnd () {
+        // Arrange
+        /* mockDriveSubsystem is initialized in @Before */
+        // Act
+        autonomousDriveCommand.end(false)
+        // Assert
+        verify(mockDriveSubsystem).arcadeDrive(0.0, 0.0)
     }
 }

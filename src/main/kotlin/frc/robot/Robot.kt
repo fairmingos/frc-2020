@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler
 // Basically ignore this class. 100% boilerplate. Thanks, Java.
 
 class Robot : TimedRobot() {
-    private var autonomousCommand: Command? = null
     private lateinit var robotContainer: RobotContainer
 
     /**
@@ -29,20 +28,16 @@ class Robot : TimedRobot() {
      * This autonomous runs the autonomous command selected by your [RobotContainer] class.
      */
     override fun autonomousInit() {
-        autonomousCommand = robotContainer.autonomousCommand
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null) {
-            autonomousCommand!!.schedule()
-        }
+        CommandScheduler.getInstance().cancelAll()
+        robotContainer.autonomousCommand.schedule()
     }
 
     /**
      * This method is called when teleop starts and autonomous ends
      */
     override fun teleopInit() {
-        if (autonomousCommand != null) {
-            autonomousCommand!!.cancel()
-        }
+        CommandScheduler.getInstance().cancelAll()
+        robotContainer.driveCommand.schedule()
     }
 
     /**
