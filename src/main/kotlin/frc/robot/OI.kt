@@ -12,6 +12,6 @@ class OI(private val joystick: Joystick){
     }
 
     fun getSlider(): Double {
-        return joystick.throttle
+        return -joystick.throttle
     }
 }
