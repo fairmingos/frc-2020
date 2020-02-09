@@ -19,11 +19,17 @@ class RobotContainer {
     private val oi = OI(joystick)
 
     /** Motors **/
-    private val leftMotor0: SpeedController = Spark(Constants.LEFT_MOTOR_1)
-    private val rightMotor0: SpeedController = Spark(Constants.RIGHT_MOTOR_1)
+    private val leftMotor1: SpeedController = Spark(Constants.LEFT_MOTOR_1)
+    private val leftMotor2: SpeedController = Spark(Constants.LEFT_MOTOR_2)
+    private val rightMotor1: SpeedController = Spark(Constants.RIGHT_MOTOR_1)
+    private val rightMotor2: SpeedController = Spark(Constants.RIGHT_MOTOR_2)
 
-    private val leftSpeedControllerGroup = SpeedControllerGroup(leftMotor0)
-    private val rightSpeedControllerGroup = SpeedControllerGroup(rightMotor0)
+    private val leftSpeedControllerGroup = SpeedControllerGroup(
+            leftMotor1, leftMotor2
+    )
+    private val rightSpeedControllerGroup = SpeedControllerGroup(
+            rightMotor1, rightMotor2
+    )
 
     private val drive = DifferentialDrive(leftSpeedControllerGroup, rightSpeedControllerGroup)
 
