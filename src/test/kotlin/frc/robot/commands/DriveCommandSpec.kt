@@ -66,6 +66,15 @@ class DriveCommandSpec {
         assert(!reversed)
     }
     @Test
+    fun isNotReversedWhenSliderIsZero () {
+        // Arrange
+        `when`(mockOI.getSlider()).thenReturn(0.0)
+        // Act
+        val reversed = driveCommand.isReversed()
+        // Assert
+        assert(!reversed)
+    }
+    @Test
     fun processInputReversesFwdWithSlider () {
         // Arrange
         val (fwd) = driveCommand.processJoystickInput(1.0, 0.0)
