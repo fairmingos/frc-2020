@@ -14,7 +14,9 @@ package frc.robot
 object Constants {
     // Motor PWM Ports
     const val LEFT_MOTOR_1 = 0
-    const val RIGHT_MOTOR_1 = 1
+    const val LEFT_MOTOR_2 = 1
+    const val RIGHT_MOTOR_1 = 2
+    const val RIGHT_MOTOR_2 = 3
 
     // Joystick Order Number
     const val JOYSTICK_1 = 0
