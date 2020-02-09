@@ -10,4 +10,8 @@ class OI(private val joystick: Joystick){
     fun getRot (): Double {
         return joystick.x
     }
+
+    fun getSlider(): Double {
+        return joystick.throttle
+    }
 }

@@ -37,16 +37,51 @@ class DriveCommandSpec {
     @Test
     fun callsArcadeDriveWithExpectedArguments () {
         // Arrange
-        val mockJoystickY = 0.5
-        val mockJoystickX = 0.05
-        `when`(mockOI.getFwd()).thenReturn(mockJoystickY)
-        `when`(mockOI.getRot()).thenReturn(mockJoystickX)
+        `when`(mockOI.getFwd()).thenReturn(0.5)
+        `when`(mockOI.getRot()).thenReturn(0.05)
+        `when`(mockOI.getSlider()).thenReturn(1.0)
         val (expectedFwd, expectedRot) = driveCommand.processJoystickInput(
-            mockJoystickY, mockJoystickX
-        )
+                0.5, 0.05)
         // Act
         driveCommand.execute()
         // Assert
         verify(mockDriveSubsystem).arcadeDrive(expectedFwd, expectedRot)
+    }
+    @Test
+    fun isReversedWhenSliderIsBack () {
+        // Arrange
+        `when`(mockOI.getSlider()).thenReturn(-1.0)
+        // Act
+        val reversed = driveCommand.isReversed()
+        // Assert
+        assert(reversed)
+    }
+    @Test
+    fun isNotReversedWhenSliderIsForward () {
+        // Arrange
+        `when`(mockOI.getSlider()).thenReturn(1.0)
+        // Act
+        val reversed = driveCommand.isReversed()
+        // Assert
+        assert(!reversed)
+    }
+    @Test
+    fun isNotReversedWhenSliderIsZero () {
+        // Arrange
+        `when`(mockOI.getSlider()).thenReturn(0.0)
+        // Act
+        val reversed = driveCommand.isReversed()
+        // Assert
+        assert(!reversed)
+    }
+    @Test
+    fun processInputReversesFwdWithSlider () {
+        // Arrange
+        val (fwd) = driveCommand.processJoystickInput(1.0, 0.0)
+        driveCommand.reversed = true
+        // Act
+        val (revFwd) = driveCommand.processJoystickInput(1.0, 0.0)
+        // Assert
+        assert(fwd == -revFwd)
     }
 }
