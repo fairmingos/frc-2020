@@ -6,7 +6,7 @@ import org.junit.Test
 
 class DriveSubsystemSpec {
     @Test
-    fun testArcadeDrive (){
+    fun testArcadeDrive () {
         // Arrange
         val mockDrive: DifferentialDrive = mock()
         val driveSubsystem = DriveSubsystem(mockDrive)

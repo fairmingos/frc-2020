@@ -18,7 +18,10 @@ object Constants {
     const val RIGHT_MOTOR_1 = 2
     const val RIGHT_MOTOR_2 = 3
 
+    const val ARM_MOTOR = 4
+
     // Joystick Order Number
     const val JOYSTICK_1 = 0
     // Joystick Button Numbers
+    const val RELEASE_ARM_BUTTON = 1
 }
