@@ -52,7 +52,7 @@ class AutonomousDriveSpec {
     @Test
     fun startsTimerOnInitialize () {
         // Arrange
-        /* mockTimer is initialized in @Before */
+        /** mockTimer is initialized in @Before */
         // Act
         autonomousDriveCommand.initialize()
         // Assert

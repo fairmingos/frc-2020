@@ -3,8 +3,11 @@ package frc.robot
 
 import edu.wpi.first.wpilibj.*
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
+import edu.wpi.first.wpilibj2.command.button.JoystickButton
 import frc.robot.commands.AutonomousDriveCommand
 import frc.robot.commands.DriveCommand
+import frc.robot.commands.ReleaseArmCommand
+import frc.robot.subsystems.ArmSubsystem
 import frc.robot.subsystems.DriveSubsystem
 
 /**
@@ -24,6 +27,8 @@ class RobotContainer {
     private val rightMotor1: SpeedController = Spark(Constants.RIGHT_MOTOR_1)
     private val rightMotor2: SpeedController = Spark(Constants.RIGHT_MOTOR_2)
 
+    private val armMotor: SpeedController = Spark(Constants.ARM_MOTOR)
+
     private val leftSpeedControllerGroup = SpeedControllerGroup(
             leftMotor1, leftMotor2
     )
@@ -35,10 +40,16 @@ class RobotContainer {
 
     /** Subsystems **/
     private val driveSubsystem = DriveSubsystem(drive)
+    private val armSubsystem = ArmSubsystem(armMotor)
 
     /** Autonomous Command **/
     val autonomousCommand = AutonomousDriveCommand(driveSubsystem, Timer())
     /** Teleop Commands **/
     val driveCommand = DriveCommand(driveSubsystem, oi)
+
+    init {
+        val releaseArmButton = JoystickButton(joystick, Constants.RELEASE_ARM_BUTTON)
+        releaseArmButton.whenPressed(ReleaseArmCommand(armSubsystem, Timer()))
+    }
 
 }
