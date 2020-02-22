@@ -2,7 +2,6 @@
 package frc.robot
 
 import edu.wpi.first.wpilibj.TimedRobot
-import edu.wpi.first.wpilibj2.command.Command
 import edu.wpi.first.wpilibj2.command.CommandScheduler
 
 // Basically ignore this class. 100% boilerplate. Thanks, Java.
@@ -13,21 +12,21 @@ class Robot : TimedRobot() {
     /**
      * This method is responsible for instantiating the RobotContainer
      */
-    override fun robotInit() {
+    override fun robotInit () {
         robotContainer = RobotContainer()
     }
 
     /**
      * This method is responsible for running the scheduler, which executes commands
      */
-    override fun robotPeriodic() {
+    override fun robotPeriodic () {
         CommandScheduler.getInstance().run()
     }
 
     /**
      * This autonomous runs the autonomous command selected by your [RobotContainer] class.
      */
-    override fun autonomousInit() {
+    override fun autonomousInit () {
         CommandScheduler.getInstance().cancelAll()
         robotContainer.autonomousCommand.schedule()
     }
@@ -35,7 +34,7 @@ class Robot : TimedRobot() {
     /**
      * This method is called when teleop starts and autonomous ends
      */
-    override fun teleopInit() {
+    override fun teleopInit () {
         CommandScheduler.getInstance().cancelAll()
         robotContainer.driveCommand.schedule()
     }
@@ -43,7 +42,7 @@ class Robot : TimedRobot() {
     /**
      * This method is called at the beginning of test mode
      */
-    override fun testInit() {
+    override fun testInit () {
         CommandScheduler.getInstance().cancelAll()
     }
 }
