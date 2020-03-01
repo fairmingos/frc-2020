@@ -18,20 +18,11 @@ class DriveCommandSpec {
         driveCommand = DriveCommand(mockDriveSubsystem, mockOI)
     }
     @Test
-    fun processJoystickInputChangesSignOfY () {
-        // Act
-        val (fwd1) = driveCommand.processJoystickInput(1.0, 0.0)
-        val (fwd2) = driveCommand.processJoystickInput(-1.0, 0.0)
-        // Assert
-        assert(fwd1 < 0)
-        assert(fwd2 > 0)
-    }
-    @Test
     fun processJoystickInputUsesTopLimits () {
         // Act
         val (fwd, rot) = driveCommand.processJoystickInput(1.0, 1.0)
         // Assert
-        assert(fwd == -driveCommand.fwdLimit)
+        assert(fwd == driveCommand.fwdLimit)
         assert(rot == driveCommand.rotLimit)
     }
     @Test
@@ -83,5 +74,45 @@ class DriveCommandSpec {
         val (revFwd) = driveCommand.processJoystickInput(1.0, 0.0)
         // Assert
         assert(fwd == -revFwd)
+    }
+    @Test
+    fun powWithSignPreservesPositiveSignWithEvenPower () {
+        // Arrange
+        val num = 2.0
+        val power = 2
+        // Act
+        val result = num.powWithSign(power)
+        // Assert
+        assert(result == 4.0)
+    }
+    @Test
+    fun powWithSignPreservesNegativeSignWithEvenPower () {
+        // Arrange
+        val num = -2.0
+        val power = 2
+        // Act
+        val result = num.powWithSign(power)
+        // Assert
+        assert(result == -4.0)
+    }
+    @Test
+    fun powWithSignPreservesPositiveSignWithOddPower () {
+        // Arrange
+        val num = 2.0
+        val power = 3
+        // Act
+        val result = num.powWithSign(power)
+        // Assert
+        assert(result == 8.0)
+    }
+    @Test
+    fun powWithSignPreservesNegativeSignWithOddPower () {
+        // Arrange
+        val num = -2.0
+        val power = 3
+        // Act
+        val result = num.powWithSign(power)
+        // Assert
+        assert(result == -8.0)
     }
 }

@@ -4,7 +4,7 @@ package frc.robot
 import edu.wpi.first.wpilibj.*
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import edu.wpi.first.wpilibj2.command.button.JoystickButton
-import frc.robot.commands.AutonomousDriveCommand
+import frc.robot.commands.AutonomousCommand
 import frc.robot.commands.DriveCommand
 import frc.robot.commands.ReleaseArmCommand
 import frc.robot.subsystems.ArmSubsystem
@@ -43,7 +43,7 @@ class RobotContainer {
     private val armSubsystem = ArmSubsystem(armMotor)
 
     /** Autonomous Command **/
-    val autonomousCommand = AutonomousDriveCommand(driveSubsystem, Timer())
+    val autonomousCommand = AutonomousCommand(driveSubsystem, Timer())
     /** Teleop Commands **/
     val driveCommand = DriveCommand(driveSubsystem, oi)
 

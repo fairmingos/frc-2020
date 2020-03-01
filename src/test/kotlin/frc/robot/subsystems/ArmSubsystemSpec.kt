@@ -3,7 +3,6 @@ package frc.robot.subsystems
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import edu.wpi.first.wpilibj.Spark
-import frc.robot.Mockable
 import org.junit.Test
 
 class ArmSubsystemSpec {
