@@ -1,6 +1,7 @@
 /*----------------------------------------------------------------------------*/ /* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */ /* Open Source Software - may be modified and shared by FRC teams. The code   */ /* must be accompanied by the FIRST BSD license file in the root directory of */ /* the project.                                                               */ /*----------------------------------------------------------------------------*/
 package frc.robot
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX
 import edu.wpi.first.wpilibj.*
 import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import edu.wpi.first.wpilibj2.command.button.JoystickButton
@@ -22,10 +23,10 @@ class RobotContainer {
     private val oi = OI(joystick)
 
     /** Motors **/
-    private val leftMotor1: SpeedController = Spark(Constants.LEFT_MOTOR_1)
-    private val leftMotor2: SpeedController = Spark(Constants.LEFT_MOTOR_2)
-    private val rightMotor1: SpeedController = Spark(Constants.RIGHT_MOTOR_1)
-    private val rightMotor2: SpeedController = Spark(Constants.RIGHT_MOTOR_2)
+    private val leftMotor1: SpeedController = WPI_VictorSPX(Constants.LEFT_MOTOR_1)
+    private val leftMotor2: SpeedController = WPI_VictorSPX(Constants.LEFT_MOTOR_2)
+    private val rightMotor1: SpeedController = WPI_VictorSPX(Constants.RIGHT_MOTOR_1)
+    private val rightMotor2: SpeedController = WPI_VictorSPX(Constants.RIGHT_MOTOR_2)
 
     private val armMotor: SpeedController = Spark(Constants.ARM_MOTOR)
 
